@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flashcard Bảng Cửu Chương</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bé Học Flashcard</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>Flashcard Bảng Cửu Chương</h1>
 
-        <div class="input-section">
-            <label>Chọn bảng cửu chương:</label>
-            <input id="tableInput" type="number" min="1" max="9" placeholder="Ví dụ: 7">
-        </div>
+        <h2>🐣 Bé Học Flashcard</h2>
 
-        <div class="mode-buttons">
-            <button onclick="startLearning()">Chế độ Học</button>
-            <button onclick="startTest()">Chế độ Kiểm tra</button>
-        </div>
+        <!-- Chế độ chọn -->
+        <button id="studyModeBtn">Chế độ Học</button>
+        <button id="quizModeBtn">Chế độ Kiểm Tra</button>
 
+        <!-- Ô nhập từ -->
+        <input id="wordInput" class="hidden" type="text" placeholder="Nhập đáp án..." />
+
+        <!-- Flashcard hiển thị từ -->
         <div id="flashcard" class="flashcard hidden"></div>
 
-        <div id="learningButtons" class="hidden">
-            <button onclick="showAnswer()">Xem đáp án</button>
-            <button onclick="nextQuestion()">Tiếp</button>
-        </div>
+        <!-- Kết quả kiểm tra -->
+        <div id="result" class="result hidden"></div>
 
-        <div id="testSection" class="hidden">
-            <input id="answerInput" type="number" placeholder="Nhập kết quả">
-            <button onclick="checkAnswer()">Trả lời</button>
-        </div>
+        <!-- Nút điều khiển -->
+        <button id="nextBtn" class="hidden">Tiếp theo</button>
+        <button id="submitBtn" class="hidden">Trả lời</button>
 
-        <div id="resultBox" class="result hidden"></div>
     </div>
 
+    <!-- Script -->
     <script src="script.js"></script>
+
 </body>
 </html>
+
