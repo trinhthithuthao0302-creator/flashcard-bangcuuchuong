@@ -4,6 +4,13 @@ let questions = [];
 let correct = 0;
 let total = 0;
 
+function hideAllSections() {
+    document.getElementById("flashcard").classList.add("hidden");
+    document.getElementById("learningButtons").classList.add("hidden");
+    document.getElementById("testSection").classList.add("hidden");
+    document.getElementById("resultBox").classList.add("hidden");
+}
+
 function startLearning() {
     table = parseInt(document.getElementById("tableInput").value);
     if (!table) {
@@ -11,48 +18,62 @@ function startLearning() {
         return;
     }
 
+    hideAllSections(); // Ẩn mọi khu vực không liên quan
+
     questions = [];
     for (let i = 1; i <= 9; i++) questions.push(`${table} x ${i}`);
-    
+
     currentIndex = 0;
-    showFlashcard();
+
+    document.getElementById("flashcard").classList.remove("hidden");
     document.getElementById("learningButtons").classList.remove("hidden");
+
+    showFlashcardLearning();
 }
 
-function showFlashcard() {
-    document.getElementById("flashcard").classList.remove("hidden");
+function showFlashcardLearning() {
     document.getElementById("flashcard").innerText = questions[currentIndex];
 }
 
 function showAnswer() {
     const q = questions[currentIndex];
     const parts = q.split(" x ");
-    document.getElementById("flashcard").innerText = q + " = " + (parts[0] * parts[1]);
+    document.getElementById("flashcard").innerText =
+        q + " = " + (parts[0] * parts[1]);
 }
 
 function nextQuestion() {
     currentIndex++;
     if (currentIndex >= questions.length) currentIndex = 0;
-    showFlashcard();
+    showFlashcardLearning();
 }
 
 function startTest() {
     table = parseInt(document.getElementById("tableInput").value);
+
     if (!table) {
         alert("Bạn chưa nhập bảng cửu chương!");
         return;
     }
 
+    hideAllSections();  
+    document.getElementById("resultBox").innerText = ""; // Xóa kết quả cũ
+
     questions = [];
     for (let i = 1; i <= 9; i++) questions.push(`${table} x ${i}`);
-    questions.sort(() => Math.random() - 0.5);
+    questions.sort(() => Math.random() - 0.5); // xáo trộn
 
     currentIndex = 0;
     correct = 0;
     total = 0;
 
     document.getElementById("testSection").classList.remove("hidden");
-    showFlashcard();
+    showFlashcardTest();
+}
+
+function showFlashcardTest() {
+    document.getElementById("flashcard").classList.remove("hidden");
+    document.getElementById("flashcard").innerText = questions[currentIndex];
 }
 
 function checkAnswer() {
@@ -65,13 +86,14 @@ function checkAnswer() {
     if (userAnswer === answer) correct++;
 
     currentIndex++;
+    document.getElementById("answerInput").value = "";
+
     if (currentIndex >= questions.length) {
         finishTest();
         return;
     }
 
-    showFlashcard();
-    document.getElementById("answerInput").value = "";
+    showFlashcardTest();
 }
 
 function finishTest() {
@@ -81,3 +103,4 @@ function finishTest() {
 
     document.getElementById("testSection").classList.add("hidden");
 }
+
