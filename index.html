@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Bảng Cửu Chương</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Flashcard Bảng Cửu Chương</h1>
+
+        <div class="input-section">
+            <label>Chọn bảng cửu chương:</label>
+            <input id="tableInput" type="number" min="1" max="9" placeholder="Ví dụ: 7">
+        </div>
+
+        <div class="mode-buttons">
+            <button onclick="startLearning()">Chế độ Học</button>
+            <button onclick="startTest()">Chế độ Kiểm tra</button>
+        </div>
+
+        <div id="flashcard" class="flashcard hidden"></div>
+
+        <div id="learningButtons" class="hidden">
+            <button onclick="showAnswer()">Xem đáp án</button>
+            <button onclick="nextQuestion()">Tiếp</button>
+        </div>
+
+        <div id="testSection" class="hidden">
+            <input id="answerInput" type="number" placeholder="Nhập kết quả">
+            <button onclick="checkAnswer()">Trả lời</button>
+        </div>
+
+        <div id="resultBox" class="result hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
